@@ -1,4 +1,4 @@
-<?php namespace Seanstewart\PlanConfig;
+<?php namespace Itoufo\PlanConfig;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -25,7 +25,7 @@ class PlanConfigServiceProvider extends ServiceProvider {
     {
         $this->app->bind('planconfig', function ()
         {
-            return $this->app->make('Seanstewart\PlanConfig\PlanConfig');
+            return $this->app->make('Itoufo\PlanConfig\PlanConfig');
         });
     }
 }

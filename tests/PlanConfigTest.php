@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Facade;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
-use Seanstewart\PlanConfig\Plan;
-use Seanstewart\PlanConfig\PlanConfig;
+use Itoufo\PlanConfig\Plan;
+use Itoufo\PlanConfig\PlanConfig;
 
 class PlanConfigTest extends TestCase {
 
@@ -21,12 +21,12 @@ class PlanConfigTest extends TestCase {
         parent::setUp();
         $this->config = new Config();
         $this->auth = new Auth();
-        $this->planConfig = new Seanstewart\PlanConfig\PlanConfig($this->config, $this->auth);
+        $this->planConfig = new Itoufo\PlanConfig\PlanConfig($this->config, $this->auth);
     }
 
     protected function getPackageProviders($app)
     {
-        return [\Seanstewart\PlanConfig\PlanConfigServiceProvider::class];
+        return [\Itoufo\PlanConfig\PlanConfigServiceProvider::class];
     }
 
     protected function getPackageAliases($app)
@@ -88,7 +88,7 @@ class PlanConfigTest extends TestCase {
     {
         Plan::shouldReceive('get')->never();
 
-        $this->assertInstanceOf(Seanstewart\PlanConfig\PlanConfig::class, plan(null));
+        $this->assertInstanceOf(Itoufo\PlanConfig\PlanConfig::class, plan(null));
     }
 
     /**
@@ -97,7 +97,7 @@ class PlanConfigTest extends TestCase {
     public function it_tests_get_with_null_for_plan()
     {
 
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['setContext', 'getCurrentUserPlan', 'getPlanKey'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['setContext', 'getCurrentUserPlan', 'getPlanKey'], [$this->config, $this->auth]);
 
         $planConfig->expects($this->once())
                    ->method('setContext')
@@ -120,7 +120,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_with_plan()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['setContext', 'getCurrentUserPlan', 'getPlanKey'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['setContext', 'getCurrentUserPlan', 'getPlanKey'], [$this->config, $this->auth]);
 
         $planConfig->expects($this->never())
                    ->method('setContext');
@@ -141,7 +141,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_with_user()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['setContext', 'getCurrentUserPlan', 'getPlanKey'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['setContext', 'getCurrentUserPlan', 'getPlanKey'], [$this->config, $this->auth]);
 
         $user = ['id' => 123];
 
@@ -166,7 +166,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_all_plans()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getConfig', 'getFallbackPlan'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getConfig', 'getFallbackPlan'], [$this->config, $this->auth]);
 
         $plans = [
             'plan_1' => ['foo1' => 'bar1'],
@@ -186,7 +186,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_gets_plan()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getConfig', 'getFallbackPlan'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getConfig', 'getFallbackPlan'], [$this->config, $this->auth]);
 
         $fallbackPlan = ['bar' => 'foo'];
 
@@ -217,7 +217,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_gets_fallback_plan()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getConfig', 'getAllPlans'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getConfig', 'getAllPlans'], [$this->config, $this->auth]);
 
         $plans = [
             'default' => ['bar' => 'foo'],
@@ -242,7 +242,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_gets_fallback_plan_no_fallback()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getConfig', 'getAllPlans'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getConfig', 'getAllPlans'], [$this->config, $this->auth]);
 
         $plans = [
             'plan_1' => ['foo1' => 'bar1'],
@@ -289,7 +289,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_plan_key()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getPlan', 'getAllowedOverrides'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getPlan', 'getAllowedOverrides'], [$this->config, $this->auth]);
 
         $completePlan = ['foo' => ['bar' => 'value'], 'barfoo' => 'abc123'];
 
@@ -322,7 +322,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_plan_key_with_overrides()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getPlan', 'getAllowedOverrides'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getPlan', 'getAllowedOverrides'], [$this->config, $this->auth]);
 
         $planConfig->expects($this->exactly(2))
                    ->method('getPlan')
@@ -342,7 +342,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_extract_user_plan_overrides()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getConfig'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getConfig'], [$this->config, $this->auth]);
 
         $overrides = ['foo.bar' => 'foo'];
 
@@ -363,7 +363,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_allowed_overrides_no_overrides()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getConfig', 'getCurrentUserPlanOverrides'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getConfig', 'getCurrentUserPlanOverrides'], [$this->config, $this->auth]);
 
         $overrides = null;
 
@@ -384,7 +384,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_allowed_overrides_key_not_set()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getConfig', 'getCurrentUserPlanOverrides'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getConfig', 'getCurrentUserPlanOverrides'], [$this->config, $this->auth]);
 
         $overrides = ['foo' => 'bar'];
 
@@ -405,7 +405,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_allowed_overrides_allows_all_keys()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getConfig', 'getCurrentUserPlanOverrides'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getConfig', 'getCurrentUserPlanOverrides'], [$this->config, $this->auth]);
 
         $overrides = ['foo' => ['bar' => 'foobar']];
 
@@ -426,7 +426,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_allowed_overrides_returns_allowed_only()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getConfig', 'getCurrentUserPlanOverrides'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getConfig', 'getCurrentUserPlanOverrides'], [$this->config, $this->auth]);
 
         $overrides = [
             'foo'          => ['bar' => 'foobar'],
@@ -456,7 +456,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_extract_user_plan()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getConfig'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getConfig'], [$this->config, $this->auth]);
 
         $planConfig->expects($this->once())
                    ->method('getConfig')
@@ -475,7 +475,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_authenticated_user()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getPlan'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getPlan'], [$this->config, $this->auth]);
 
         Auth::shouldReceive('check')
             ->once()
@@ -495,7 +495,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_get_authenticated_user_not_logged_in()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getPlan'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getPlan'], [$this->config, $this->auth]);
 
         Auth::shouldReceive('check')
             ->andReturn(false);
@@ -511,7 +511,7 @@ class PlanConfigTest extends TestCase {
      */
     public function it_tests_set_context()
     {
-        $planConfig = $this->getMock('SeanStewart\PlanConfig\PlanConfig', ['getAuthenticatedUser', 'extractUserPlan', 'extractUserPlanOverrides'], [$this->config, $this->auth]);
+        $planConfig = $this->getMock('Itoufo\PlanConfig\PlanConfig', ['getAuthenticatedUser', 'extractUserPlan', 'extractUserPlanOverrides'], [$this->config, $this->auth]);
 
         $user = ['id' => 1];
 

@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: seanstewart
+ * User: Itoufo
  * Date: 8/9/15
  * Time: 7:58 AM
  */
 
-namespace Seanstewart\PlanConfig;
+namespace Itoufo\PlanConfig;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;

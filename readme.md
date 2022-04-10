@@ -7,7 +7,7 @@ This Laravel 5 package makes it easy to manage the rules/limits of your SaaS app
 Require the package with composer
 
 ```
-composer require seanstewart/plan-config
+composer require Itoufo/plan-config
 ```
 
 Laravel 5.5 uses Package Auto-Discovery and it is not necessary to manually add the ServiceProvider.
@@ -18,7 +18,7 @@ If you don't use auto-discovery, add the ServiceProvider to the providers array 
 
 ```php
 'providers' => [
-    Seanstewart\PlanConfig\PlanConfigServiceProvider::class
+    Itoufo\PlanConfig\PlanConfigServiceProvider::class
 ];
 ```
 
@@ -26,14 +26,14 @@ Include the facade (optional) in `app/config/app.php`.
 
 ```php
 'aliases' => [
-    'Plan'       => Seanstewart\PlanConfig\Plan::class
+    'Plan'       => Itoufo\PlanConfig\Plan::class
 ];
 ```
 
 Then you will need to generate your config by running the command
 
 ```js
-php artisan vendor:publish --provider="Seanstewart\PlanConfig\PlanConfigServiceProvider"
+php artisan vendor:publish --provider="Itoufo\PlanConfig\PlanConfigServiceProvider"
 ```
 
 ## How to Use

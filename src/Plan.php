@@ -1,5 +1,5 @@
 <?php
-namespace Seanstewart\PlanConfig;
+namespace Itoufo\PlanConfig;
 
 use Illuminate\Support\Facades\Facade;
 

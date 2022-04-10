@@ -1,8 +1,8 @@
 {
-    "name": "seanstewart/plan-config",
+    "name": "itoufo/plan-config",
     "description": "Plan config allows you to easily define attributes and limits for your SaaS application subscription plans.",
     "keywords": ["subscription plans", "saas", "plans", "config", "laravel", "laravel5"],
-    "homepage": "https://github.com/theseanstewart/Plan-Config",
+    "homepage": "https://github.com/theItoufo/Plan-Config",
     "license": "MIT",
     "authors": [
         {
@@ -12,16 +12,16 @@
     ],
     "require": {
         "php": ">=7.0",
-        "illuminate/support": "~5.5"
+        "illuminate/support": "~6"
     },
     "require-dev": {
         "mockery/mockery": "~1.0",
-        "phpunit/phpunit": "~6.0",
-        "orchestra/testbench": "^3.2"
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "*"
     },
     "autoload": {
         "psr-4": {
-            "Seanstewart\\PlanConfig\\": "src/"
+            "Itoufo\\PlanConfig\\": "src/"
         },
         "files": [
             "src/functions.php"
@@ -30,10 +30,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Seanstewart\\PlanConfig\\PlanConfigServiceProvider"
+                "Itoufo\\PlanConfig\\PlanConfigServiceProvider"
             ],
             "aliases": {
-                "Plan": "Seanstewart\\PlanConfig\\Plan"
+                "Plan": "Itoufo\\PlanConfig\\Plan"
             }
         }
     },
